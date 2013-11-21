@@ -86,7 +86,7 @@ namespace Swagger.Net
             return "No Documentation Found.";
         }
 
-        public virtual string GetResponseClass(HttpActionDescriptor actionDescriptor)
+        public string GetResponseClass(HttpActionDescriptor actionDescriptor)
         {
             ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
             if (reflectedActionDescriptor != null)
@@ -160,6 +160,16 @@ namespace Swagger.Net
                 return string.Format("{0}{{{1}}}", result.Groups[1].Value, result.Groups[2].Value);
             }
             return typeName;
+        }
+
+        public virtual string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
+        {
+            return controllerDescriptor.ControllerName;
+        }
+
+        public virtual string GetResponseDocumentation(HttpActionDescriptor actionDescriptor)
+        {
+            return this.GetResponseClass(actionDescriptor);
         }
     }
 }
