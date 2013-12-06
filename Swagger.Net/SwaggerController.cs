@@ -4,9 +4,11 @@ using System.Net.Http;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Swagger.Net
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SwaggerController : ApiController
     {
         /// <summary>
