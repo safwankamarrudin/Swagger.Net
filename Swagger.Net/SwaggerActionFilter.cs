@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -29,9 +30,8 @@ namespace Swagger.Net
 
             HttpResponseMessage response = new HttpResponseMessage();
 
-            response.Content = new ObjectContent<ResourceListing>(
-                getDocs(actionContext),
-                actionContext.ControllerContext.Configuration.Formatters.JsonFormatter);
+            var docs = getDocs(actionContext);
+            response.Content = new ObjectContent<ResourceListing>(docs,new JsonMediaTypeFormatter());
 
             actionContext.Response = response;
         }

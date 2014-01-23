@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
+using Swagger.Net.Extensions;
 
 namespace Swagger.Net
 {
@@ -62,6 +63,7 @@ namespace Swagger.Net
             ResourceApi rApi = new ResourceApi()
             {
                 path = "/" + api.RelativePath,
+                alternatePath = "/" + api.GetPath(),
                 description = api.Documentation,
                 operations = new List<ResourceApiOperation>()
             };
@@ -125,6 +127,7 @@ namespace Swagger.Net
     public class ResourceApi
     {
         public string path { get; set; }
+        public string alternatePath { get; set; }
         public string description { get; set; }
         public List<ResourceApiOperation> operations { get; set; }
     }
